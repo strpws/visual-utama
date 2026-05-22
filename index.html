@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Ledakan Daya Tampung PTN-BH</title>
+<meta name="description" content="Dalam satu dekade, jumlah mahasiswa baru meledak — tapi pertumbuhannya terkonsentrasi di PTN berbadan hukum, dan makin banyak lewat jalur Mandiri." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#00599A; --red:#c92b2c; --gold:#F3C727; --gold-deep:#C49314;
+  --ink:#161616; --muted:#5b5b5b; --bg:#ffffff; --rule:#e3e3e3;
+  --blue-deep:#013E66; --blue-mid:#4E84AD; --blue-light:#AFCBE0; --blue-soft:#6BA0C6;
+  --gold-tint:#E3CA76;
+  --serif:'Lora', Georgia, serif;
+  --sans:'PT Sans', -apple-system, Segoe UI, Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--serif); line-height:1.7;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img{max-width:100%}
+
+/* ---- progress bar ---- */
+#progress{
+  position:fixed; top:0; left:0; height:3px; width:0%;
+  background:var(--blue); z-index:50; transition:width .12s linear;
+}
+
+/* ---- shared column ---- */
+.wrap{max-width:680px; margin:0 auto; padding:0 24px;}
+
+/* ---- hero ---- */
+.hero{padding:16vh 0 12vh;}
+.kicker{
+  font-family:var(--sans); font-weight:700; text-transform:uppercase;
+  letter-spacing:0; color:var(--red); font-size:.82rem; margin:0 0 1.1rem;
+}
+.hero h1{
+  font-family:var(--serif); font-weight:700; line-height:1.14;
+  letter-spacing:-.01em; margin:0 0 1.4rem;
+  font-size:clamp(2.3rem, 8.2vw, 3.6rem); max-width:14ch;
+}
+.standfirst{
+  font-size:clamp(1.08rem,4.4vw,1.3rem); color:#2c2c2c; max-width:54ch;
+  margin:0 0 2.2rem; font-weight:400;
+}
+.byline{
+  font-family:var(--sans); font-size:.86rem; color:var(--muted);
+  border-top:1px solid var(--rule); padding-top:1rem; max-width:54ch;
+}
+.byline strong{color:var(--ink)}
+.scroll-cue{
+  font-family:var(--sans); font-size:.78rem; letter-spacing:.04em;
+  text-transform:uppercase; color:var(--muted); margin-top:3.5rem;
+  display:flex; align-items:center; gap:.55rem;
+}
+.scroll-cue .arrow{
+  display:inline-block; width:1px; height:30px; background:var(--muted);
+  position:relative; animation:cue 1.8s ease-in-out infinite;
+}
+.scroll-cue .arrow::after{
+  content:''; position:absolute; bottom:0; left:-3px;
+  border-left:4px solid transparent; border-right:4px solid transparent;
+  border-top:5px solid var(--muted);
+}
+@keyframes cue{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(5px)}}
+
+/* ---- act / scrollytelling ---- */
+.act{position:relative;}
+.act__graphic{
+  position:sticky; top:0; height:100vh; height:100svh;
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.act__head{
+  flex:0 0 auto; padding:14px 24px 4px; text-align:center;
+  pointer-events:none;
+}
+.act__kicker{
+  font-family:var(--sans); font-weight:700; text-transform:uppercase;
+  letter-spacing:0; color:var(--red); font-size:.72rem; margin:0;
+}
+.act__chart{flex:1 1 auto; min-height:0;}
+.act__chart svg{display:block}
+
+.act__steps{position:relative; margin-top:-100vh; margin-top:-100svh;}
+.step{
+  min-height:100vh; min-height:100svh;
+  display:flex; align-items:flex-end; justify-content:center;
+  padding:0 18px 9vh; pointer-events:none;
+}
+.step__card{
+  pointer-events:auto;
+  background:rgba(255,255,255,.93);
+  -webkit-backdrop-filter:blur(3px); backdrop-filter:blur(3px);
+  border:1px solid var(--rule); border-left:3px solid var(--red);
+  box-shadow:0 8px 30px rgba(0,0,0,.10);
+  padding:18px 20px 20px; max-width:430px; width:100%;
+  opacity:.32; transform:translateY(8px);
+  transition:opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+}
+.step.is-active .step__card{opacity:1; transform:none;}
+.step__card h3{
+  font-family:var(--serif); font-weight:600; font-size:1.16rem;
+  margin:0 0 .5rem; line-height:1.25;
+}
+.step__card p{
+  font-family:var(--serif); font-weight:400; font-size:1rem;
+  margin:0; color:#2a2a2a; line-height:1.6;
+}
+.step__card .big{
+  font-family:var(--sans); font-weight:700; color:var(--blue-deep);
+  font-size:1.05rem;
+}
+.step__card em{font-style:normal; color:var(--red); font-weight:400;}
+
+/* ---- closing ---- */
+.closing{padding:13vh 0 6vh;}
+.rule-quote{border-top:2px solid var(--ink); padding-top:1.4rem; margin-top:1rem;}
+.pullquote{
+  font-family:var(--serif); font-weight:500; font-style:normal;
+  font-size:clamp(1.3rem,5.2vw,1.7rem); line-height:1.4; margin:0 0 1.4rem;
+}
+.closing p{font-size:1.05rem; max-width:54ch;}
+.note{
+  font-family:var(--sans); font-size:.82rem; color:var(--muted);
+  border-top:1px solid var(--rule); padding-top:1rem; margin-top:2.2rem;
+  line-height:1.6;
+}
+.note a{color:var(--blue)}
+
+/* ---- data table (accessibility) ---- */
+details.data{margin-top:2rem; font-family:var(--sans);}
+details.data summary{
+  cursor:pointer; font-size:.85rem; color:var(--blue); font-weight:700;
+}
+details.data table{
+  border-collapse:collapse; width:100%; font-size:.78rem; margin-top:1rem;
+  color:var(--ink);
+}
+details.data caption{text-align:left; color:var(--muted); font-size:.78rem; margin:.8rem 0 .3rem;}
+details.data th, details.data td{
+  border-bottom:1px solid var(--rule); padding:5px 8px; text-align:right;
+}
+details.data th:first-child, details.data td:first-child{text-align:left;}
+details.data thead th{color:var(--muted); font-weight:700;}
+
+/* ---- desktop / landscape: float cards to the side ---- */
+@media (min-width:900px){
+  .step{
+    align-items:center; justify-content:flex-start;
+    padding:0 0 0 5vw;
+  }
+  .step__card{max-width:360px;}
+  .act__head{padding-top:24px;}
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important;}
+  html{scroll-behavior:auto;}
+  .step__card{transition:none;}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- ============ HERO ============ -->
+<header class="hero wrap">
+  <p class="kicker">Pendidikan Tinggi</p>
+  <h1>Ledakan Daya Tampung PTN-BH</h1>
+  <p class="standfirst">Dalam satu dekade, jumlah mahasiswa baru di Indonesia melonjak. Namun pertumbuhan itu tak dibagi rata — segelintir perguruan tinggi negeri berbadan hukum menyedot porsi terbesar, makin banyak lewat jalur Mandiri di luar seleksi nasional.</p>
+  <p class="byline"><strong>KOMPAS</strong> — Tim Redaksi Data &middot; Disajikan untuk Harian Kompas / kompas.id</p>
+  <div class="scroll-cue"><span class="arrow"></span> Gulir untuk menelusuri</div>
+</header>
+
+<!-- ============ ACT 1 — DEMAND ============ -->
+<section class="act" id="act1" aria-label="Bagian 1: Permintaan kursi kuliah meroket">
+  <div class="act__graphic">
+    <div class="act__head"><p class="act__kicker">Bagian 1 — Permintaan</p></div>
+    <div class="act__chart" id="g1" role="img" aria-label="Grafik garis jumlah mahasiswa sarjana baru per tahun, 2014 sampai 2025, naik dari 876 ribu menjadi 1,45 juta."></div>
+  </div>
+  <div class="act__steps">
+    <div class="step" data-act="1" data-step="0">
+      <div class="step__card">
+        <h3>Titik awal</h3>
+        <p>Pada 2014, sekitar <span class="big">876.337</span> mahasiswa sarjana baru diterima di seluruh perguruan tinggi Indonesia.</p>
+      </div>
+    </div>
+    <div class="step" data-act="1" data-step="1">
+      <div class="step__card">
+        <h3>Satu dekade kemudian</h3>
+        <p>Pada 2025 angkanya menembus <span class="big">1.448.993</span> — naik sekitar <em>65 persen</em>. Permintaan akan kursi kuliah meroket.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 2 — INEQUALITY ============ -->
+<section class="act" id="act2" aria-label="Bagian 2: Pertumbuhan tak merata antar jenis kampus">
+  <div class="act__graphic">
+    <div class="act__head"><p class="act__kicker">Bagian 2 — Ketimpangan</p></div>
+    <div class="act__chart" id="g2" role="img" aria-label="Grafik garis rata-rata penerimaan mahasiswa baru per kampus: PTN-BH naik tajam lalu terurai menjadi 21 garis tiap kampus, PTN lain tumbuh lambat, PTS menurun."></div>
+  </div>
+  <div class="act__steps">
+    <div class="step" data-act="2" data-step="0">
+      <div class="step__card">
+        <h3>Yang menyerap paling banyak</h3>
+        <p>Rata-rata, satu <span class="big">PTN-BH</span> kini menerima lebih dari <span class="big">10.000</span> mahasiswa baru per tahun — hampir dua kali lipat angka 2014.</p>
+      </div>
+    </div>
+    <div class="step" data-act="2" data-step="1">
+      <div class="step__card">
+        <h3>Tapi tak seragam</h3>
+        <p>Di balik rata-rata itu, tiap PTN-BH bergerak sendiri. Sebagian melesat jauh di atas garis rata-rata — <span class="big">UNESA</span>, <span class="big">UB</span>, dan <span class="big">UNDIP</span> kini menerima belasan ribu hingga lebih dari <span class="big">20.000</span> mahasiswa baru tiap tahun.</p>
+      </div>
+    </div>
+    <div class="step" data-act="2" data-step="2">
+      <div class="step__card">
+        <h3>PTN biasa tertinggal</h3>
+        <p>Rata-rata <span class="big">PTN non-BH</span> hanya merangkak naik, dari sekitar 2.000 menjadi 2.900 mahasiswa baru per kampus. Jaraknya kian melebar.</p>
+      </div>
+    </div>
+    <div class="step" data-act="2" data-step="3">
+      <div class="step__card">
+        <h3>PTS justru menyusut</h3>
+        <p>Rata-rata penerimaan per <span class="big">PTS</span> malah turun. Pada 2025, satu PTN-BH menerima <em>±3,6× lipat</em> PTN lain dan <em>±29× lipat</em> rata-rata satu PTS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACT 3 — MANDIRI ============ -->
+<section class="act" id="act3" aria-label="Bagian 3: Komposisi jalur masuk PTN-BH">
+  <div class="act__graphic">
+    <div class="act__head"><p class="act__kicker">Bagian 3 — Jalur Masuk</p></div>
+    <div class="act__chart" id="g3" role="img" aria-label="Grafik batang bertumpuk komposisi jalur masuk tiap PTN-BH: Mandiri, SNBT, dan SNBP. Diurutkan dari porsi Mandiri terbesar."></div>
+  </div>
+  <div class="act__steps">
+    <div class="step" data-act="3" data-step="0">
+      <div class="step__card">
+        <h3>Tiga pintu masuk</h3>
+        <p>Mahasiswa baru PTN-BH masuk lewat tiga jalur: <span class="big">SNBP</span> (prestasi), <span class="big">SNBT</span> (tes nasional), dan <span class="big">Mandiri</span> (seleksi yang diatur kampus sendiri).</p>
+      </div>
+    </div>
+    <div class="step" data-act="3" data-step="1">
+      <div class="step__card">
+        <h3>Jalur Mandiri membesar</h3>
+        <p>Rata-rata sekitar <span class="big">40%</span> kursi PTN-BH diisi lewat jalur Mandiri — di luar dua jalur nasional. <em>12 dari 21</em> PTN-BH mengisi 40% kursinya atau lebih dari jalur ini.</p>
+      </div>
+    </div>
+    <div class="step" data-act="3" data-step="2">
+      <div class="step__card">
+        <h3>Yang paling jauh</h3>
+        <p>Di <span class="big">UNY</span>, hampir <span class="big">67%</span> mahasiswa baru masuk lewat jalur Mandiri — dua dari tiga kursi ditentukan di luar seleksi nasional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<footer class="closing wrap">
+  <div class="rule-quote">
+    <p class="pullquote">Daya tampung yang meledak tak otomatis berarti akses yang makin merata.</p>
+  </div>
+  <p>Pertumbuhan mahasiswa baru terkonsentrasi di PTN-BH, sementara PTN lain tumbuh lambat dan rata-rata PTS menyusut. Pada saat yang sama, makin banyak kursi PTN-BH dialokasikan lewat jalur Mandiri yang ditentukan kampus — bukan lewat seleksi nasional SNBP dan SNBT.</p>
+
+  <p class="note">
+    Sumber: data penerimaan mahasiswa sarjana baru perguruan tinggi, 2014–2025; komposisi jalur masuk PTN-BH (Mandiri, SNBT, SNBP). PTN-BH mencakup 21 perguruan tinggi negeri berbadan hukum. Angka pada Bagian 2 adalah rata-rata penerimaan per kampus. <br>*Sesuai catatan pada data sumber. Grafik: Kompas.
+  </p>
+
+  <details class="data">
+    <summary>Lihat data</summary>
+    <table>
+      <caption>Tabel 1 — Total mahasiswa sarjana baru per tahun</caption>
+      <thead><tr><th>Tahun</th><th>Jumlah</th></tr></thead>
+      <tbody id="tbl1"></tbody>
+    </table>
+    <table>
+      <caption>Tabel 2 — Rata-rata penerimaan per kampus</caption>
+      <thead><tr><th>Tahun</th><th>PTN-BH</th><th>PTN lain</th><th>PTS</th></tr></thead>
+      <tbody id="tbl2"></tbody>
+    </table>
+    <table>
+      <caption>Tabel 3 — Komposisi jalur masuk PTN-BH (%)</caption>
+      <thead><tr><th>PTN-BH</th><th>Mandiri</th><th>SNBT</th><th>SNBP</th></tr></thead>
+      <tbody id="tbl3"></tbody>
+    </table>
+  </details>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script src="https://unpkg.com/scrollama@3.2.0/build/scrollama.min.js"></script>
+<script>
+"use strict";
+const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fmtID = n => Math.round(n).toLocaleString('id-ID');
+
+/* ===================== DATA ===================== */
+// Tabel 1: [tahun, total]
+const D1 = [
+  [2014,876337],[2015,844194],[2016,892386],[2017,896669],[2018,977077],
+  [2019,1037348],[2020,1029416],[2021,1122213],[2022,1257316],[2023,1283984],
+  [2024,1360561],[2025,1448993]
+];
+
+// Tabel 2: per tahun -> 21 nilai PTN-BH, rata-rata PTN lain, rata-rata PTS
+const D2 = [
+  {y:2014, v:[3410,3308,4089,5381,3714,11163,6957,7429,4588,6806,3950,5709,4966,6477,4955,4659,5017,6086,5853,5952,4192], lain:1998, pts:531},
+  {y:2015, v:[3432,3580,3962,5233,3698,12768,7004,7302,5096,6711,4314,6079,5589,5876,5004,4500,5542,6324,5655,2479,4611], lain:2060, pts:473},
+  {y:2016, v:[3595,3855,3895,5159,3893,12171,6705,6707,4976,6969,3996,6116,6308,6020,4900,4848,6402,6719,5962,6162,4328], lain:2104, pts:480},
+  {y:2017, v:[3710,3874,3704,5008,3772,10250,8145,6173,5287,6849,4640,5852,8211,6187,5325,4817,6127,6317,6665,6536,4540], lain:2143, pts:468},
+  {y:2018, v:[3698,4029,3796,4912,4136,10177,8404,7711,6152,6939,3726,5662,7812,6856,5332,4951,6603,7149,6121,6506,5242], lain:2221, pts:490},
+  {y:2019, v:[3798,4375,4743,5197,4323,13354,10624,8273,6074,7824,3992,5889,8041,7046,6039,6519,6159,8554,7127,6828,5973], lain:2263, pts:467},
+  {y:2020, v:[4328,4038,5346,5530,5549,13684,11444,8963,6830,7366,4659,5874,7442,7895,5861,7331,6116,9167,7348,6739,6802], lain:2316, pts:418},
+  {y:2021, v:[4207,4191,5142,6188,6083,14386,11786,8958,7085,7497,4893,5966,8498,9306,6076,8984,6270,8802,7859,6924,6316], lain:2508, pts:416},
+  {y:2022, v:[6643,4854,5912,7047,6759,14527,11794,9531,7502,8315,6153,7909,8987,10049,10252,8363,7161,9449,8679,7231,6175], lain:2594, pts:414},
+  {y:2023, v:[6939,4841,6281,7713,6580,14486,12706,9891,8703,8512,5560,7346,8262,9992,19191,8814,6675,9862,8563,7417,6008], lain:2524, pts:384},
+  {y:2024, v:[7737,4644,6578,7930,6557,14174,13153,10661,9234,8640,8095,9267,10475,11047,16423,9046,8106,10452,9250,7637,7427], lain:2672, pts:369},
+  {y:2025, v:[8391,4958,6934,8779,7094,16135,14890,10591,10493,8912,10288,12087,11004,10836,20175,10629,9657,11788,9800,8483,7817], lain:2919, pts:366}
+];
+
+// Tabel 3: [abbrev, nama, mandiri, snbt, snbp]  (sudah terurut Mandiri desc)
+const D3 = [
+  ['UNY*','Universitas Negeri Yogyakarta',66.9,19.9,13.2],
+  ['UNJ*','Universitas Negeri Jakarta',54.9,26.8,18.3],
+  ['UNDIP','Universitas Diponegoro',49.9,28.7,21.4],
+  ['UM','Universitas Negeri Malang',48.3,25.2,26.5],
+  ['UNNES','Universitas Negeri Semarang',48.1,30.8,21.2],
+  ['UNS','Universitas Sebelas Maret',47.6,30.5,21.9],
+  ['UI','Universitas Indonesia',46.8,31.2,21.9],
+  ['UB','Universitas Brawijaya',46.3,31.8,21.9],
+  ['UNPAD','Universitas Padjadjaran',46.2,28.4,25.5],
+  ['UNAIR','Universitas Airlangga',43.8,30.5,25.7],
+  ['UGM','Universitas Gadjah Mada',43.6,27.7,28.7],
+  ['ITS','Inst. Teknologi Sepuluh Nopember',40.6,34.9,24.5],
+  ['UNSRI','Universitas Sriwijaya',39.3,40.2,20.5],
+  ['UNP','Universitas Negeri Padang',34.8,39.0,26.2],
+  ['UNESA','Universitas Negeri Surabaya',31.0,39.2,29.8],
+  ['UNAND','Universitas Andalas',29.4,40.1,30.6],
+  ['USK','Universitas Syiah Kuala',27.7,39.6,32.7],
+  ['UPI','Universitas Pendidikan Indonesia',27.5,42.9,29.6],
+  ['IPB','Institut Pertanian Bogor',24.2,27.1,48.6],
+  ['ITB','Institut Teknologi Bandung',21.7,36.5,41.8],
+  ['UNHAS','Universitas Hasanuddin',18.3,53.7,28.0]
+];
+
+// derived series for Act 2
+const mean = a => a.reduce((s,x)=>s+x,0)/a.length;
+const S_PTNBH = D2.map(d=>({y:d.y, v:mean(d.v)}));
+const S_LAIN  = D2.map(d=>({y:d.y, v:d.lain}));
+const S_PTS   = D2.map(d=>({y:d.y, v:d.pts}));
+// urutan nilai pada D2[].v
+const PTNBH_NAMES = ['IPB','ITB','ITS','UNAIR','UNAND','UB','UNDIP','UGM','UNHAS','UI','UNJ','UM','UNP','UNNES','UNESA','UNY','UNPAD','UPI','UNS','UNSRI','USK'];
+const INDIV = PTNBH_NAMES.map((nm,k)=>({name:nm, data:D2.map(d=>({y:d.y, v:d.v[k]}))}));
+const STANDOUTS = {UNESA:1, UB:1, UNDIP:1};
+const AVG_MANDIRI = mean(D3.map(d=>d[2])); // ~39.85
+
+/* ===================== HELPERS ===================== */
+function freshSvg(id){
+  const el = document.getElementById(id);
+  const w = el.clientWidth, h = el.clientHeight;
+  d3.select(el).selectAll('svg').remove();
+  const svg = d3.select(el).append('svg')
+    .attr('width', w).attr('height', h)
+    .attr('viewBox', `0 0 ${w} ${h}`)
+    .attr('font-family', "var(--sans)");
+  return {svg, w, h};
+}
+function countUp(node, to, animate){
+  if(!animate || REDUCE){ node.text(fmtID(to)); return; }
+  const dur = 1200, t0 = performance.now();
+  function tick(now){
+    let p = Math.min(1, (now - t0)/dur);
+    p = 1 - Math.pow(1 - p, 3);
+    node.text(fmtID(to * p));
+    if(p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const y1label = v => v===0 ? '0' : v>=1e6 ? (v/1e6).toFixed(1).replace('.',',')+' jt' : (v/1000)+' rb';
+
+/* ===================== ACT 1 — line: total ===================== */
+function renderAct1(step, animate){
+  const {svg,w,h} = freshSvg('g1');
+  if(w===0||h===0) return;
+  const m = {top:24, right:74, bottom:44, left:16};
+  const iw = w-m.left-m.right, ih = h-m.top-m.bottom;
+  const g = svg.append('g').attr('transform',`translate(${m.left},${m.top})`);
+  const x = d3.scaleLinear().domain([2014,2025]).range([0,iw]);
+  const y = d3.scaleLinear().domain([0,1600000]).range([ih,0]);
+
+  // gridlines + y labels
+  [0,500000,1000000,1500000].forEach(t=>{
+    g.append('line').attr('x1',0).attr('x2',iw).attr('y1',y(t)).attr('y2',y(t))
+      .attr('stroke','var(--rule)').attr('stroke-width',1);
+    g.append('text').attr('x',0).attr('y',y(t)-6).attr('fill','var(--muted)')
+      .attr('font-size',12).text(y1label(t));
+  });
+  // x labels
+  [2014,2017,2020,2023,2025].forEach(t=>{
+    g.append('text').attr('x',x(t)).attr('y',ih+24).attr('text-anchor','middle')
+      .attr('fill','var(--muted)').attr('font-size',12).text(t);
+  });
+
+  const line = d3.line().x(d=>x(d[0])).y(d=>y(d[1])).curve(d3.curveMonotoneX);
+  const first = D1[0], last = D1[D1.length-1];
+
+  // start marker (always)
+  g.append('circle').attr('cx',x(first[0])).attr('cy',y(first[1])).attr('r',4.5)
+    .attr('fill','var(--blue)');
+
+  if(step>=1){
+    const path = g.append('path').datum(D1).attr('d',line)
+      .attr('fill','none').attr('stroke','var(--blue)')
+      .attr('stroke-width',3).attr('stroke-linecap','round').attr('stroke-linejoin','round');
+    if(animate && !REDUCE){
+      const L = path.node().getTotalLength();
+      path.attr('stroke-dasharray',`${L} ${L}`).attr('stroke-dashoffset',L)
+        .transition().duration(1400).ease(d3.easeCubicInOut).attr('stroke-dashoffset',0);
+    }
+    // end dot + label
+    g.append('circle').attr('cx',x(last[0])).attr('cy',y(last[1])).attr('r',5)
+      .attr('fill','var(--blue)');
+    const lab = g.append('text').attr('x',x(last[0])+8).attr('y',y(last[1])-8)
+      .attr('fill','var(--blue-deep)').attr('font-weight',700).attr('font-size',15)
+      .attr('text-anchor','end');
+    countUp(lab, last[1], animate);
+    // +65% annotation
+    g.append('text').attr('x',x(last[0])+8).attr('y',y(last[1])+10)
+      .attr('text-anchor','end').attr('fill','var(--red)')
+      .attr('font-weight',700).attr('font-size',13).text('+65%');
+  } else {
+    const lab = g.append('text').attr('x',x(first[0])+8).attr('y',y(first[1])-8)
+      .attr('fill','var(--blue-deep)').attr('font-weight',700).attr('font-size',15);
+    lab.text(fmtID(first[1]));
+    g.append('text').attr('x',x(first[0])+8).attr('y',y(first[1])+10)
+      .attr('fill','var(--muted)').attr('font-size',12).text('mahasiswa baru, 2014');
+  }
+}
+
+/* ===================== ACT 2 — multi-line ===================== */
+function renderAct2(step, animate){
+  const {svg,w,h} = freshSvg('g2');
+  if(w===0||h===0) return;
+  const m = {top:28, right:100, bottom:44, left:16};
+  const iw = w-m.left-m.right, ih = h-m.top-m.bottom;
+  // step 1 (the "break apart") zooms out to show the full fan; other steps
+  // keep the closer scale so PTN lain / PTS stay readable.
+  const tall = (step===1);
+  const domainMax = tall ? 21500 : 11000;
+  const ticks = tall ? [0,5000,10000,15000,20000] : [0,2500,5000,7500,10000];
+
+  const clipId = 'clip-g2';
+  svg.append('defs').append('clipPath').attr('id',clipId)
+    .append('rect').attr('x',-2).attr('y',-8).attr('width',iw+4).attr('height',ih+8);
+
+  const g = svg.append('g').attr('transform',`translate(${m.left},${m.top})`);
+  const x = d3.scaleLinear().domain([2014,2025]).range([0,iw]);
+  const y = d3.scaleLinear().domain([0,domainMax]).range([ih,0]);
+
+  ticks.forEach(t=>{
+    g.append('line').attr('x1',0).attr('x2',iw).attr('y1',y(t)).attr('y2',y(t))
+      .attr('stroke','var(--rule)').attr('stroke-width',1);
+    g.append('text').attr('x',0).attr('y',y(t)-6).attr('fill','var(--muted)')
+      .attr('font-size',12).text(t===0?'0':fmtID(t));
+  });
+  [2014,2017,2020,2023,2025].forEach(t=>{
+    g.append('text').attr('x',x(t)).attr('y',ih+24).attr('text-anchor','middle')
+      .attr('fill','var(--muted)').attr('font-size',12).text(t);
+  });
+
+  const line = d3.line().x(d=>x(d.y)).y(d=>y(d.v)).curve(d3.curveMonotoneX);
+  const plot = g.append('g').attr('clip-path',`url(#${clipId})`);
+
+  // individual PTN-BH lines (revealed from step 1) — behind the aggregates, clipped
+  if(step>=1){
+    INDIV.forEach((s,i)=>{
+      const std = STANDOUTS[s.name];
+      const path = plot.append('path').datum(s.data).attr('d',line)
+        .attr('fill','none').attr('stroke','var(--blue-light)')
+        .attr('stroke-width', std?1.6:1.1)
+        .attr('opacity', std?0.7:0.3)
+        .attr('stroke-linecap','round').attr('stroke-linejoin','round');
+      if(animate && !REDUCE && step===1){
+        const fin = std?0.7:0.3;
+        path.style('opacity',0).transition().delay(Math.min(i*15,330)).duration(650)
+          .style('opacity',fin);
+      }
+      // label standouts only while zoomed out (otherwise they sit above the frame)
+      if(std && tall){
+        const last = s.data[s.data.length-1];
+        g.append('text').attr('x',x(last.y)+7).attr('y',y(last.v)+4)
+          .attr('fill','var(--blue)').attr('font-size',11).attr('font-weight',700)
+          .text(s.name);
+      }
+    });
+  }
+
+  // bold aggregate lines
+  const bold = [
+    {data:S_PTNBH, color:'var(--blue-deep)', label:'PTN-BH', wt:3.5, show:0},
+    {data:S_LAIN,  color:'var(--blue-soft)', label:'PTN lain', wt:2.5, show:2},
+    {data:S_PTS,   color:'var(--gold-deep)', label:'PTS', wt:2.5, show:3}
+  ];
+  bold.forEach(s=>{
+    if(step < s.show) return;
+    const path = plot.append('path').datum(s.data).attr('d',line)
+      .attr('fill','none').attr('stroke',s.color).attr('stroke-width',s.wt)
+      .attr('stroke-linecap','round').attr('stroke-linejoin','round');
+    if(animate && !REDUCE && step===s.show){
+      const L = path.node().getTotalLength();
+      path.attr('stroke-dasharray',`${L} ${L}`).attr('stroke-dashoffset',L)
+        .transition().duration(1100).ease(d3.easeCubicInOut).attr('stroke-dashoffset',0);
+    }
+    const last = s.data[s.data.length-1];
+    g.append('circle').attr('cx',x(last.y)).attr('cy',y(last.v)).attr('r',4).attr('fill',s.color);
+    g.append('text').attr('x',x(last.y)+8).attr('y',y(last.v)-8)
+      .attr('fill',s.color).attr('font-weight',700).attr('font-size',13).text(s.label);
+    g.append('text').attr('x',x(last.y)+8).attr('y',y(last.v)+8)
+      .attr('fill',s.color).attr('font-weight',700).attr('font-size',13).text(fmtID(last.v));
+  });
+
+  // multiplier annotation at final step
+  if(step>=3){
+    g.append('text').attr('x',x(2025)+8).attr('y',y(S_PTNBH[S_PTNBH.length-1].v)-26)
+      .attr('fill','var(--red)').attr('font-weight',700).attr('font-size',12)
+      .text('±3,6× PTN lain');
+  }
+}
+
+/* ===================== ACT 3 — stacked bars ===================== */
+function renderAct3(step, animate){
+  const {svg,w,h} = freshSvg('g3');
+  if(w===0||h===0) return;
+  const m = {top:58, right:16, bottom:30, left:54};
+  const iw = w-m.left-m.right, ih = h-m.top-m.bottom;
+  const g = svg.append('g').attr('transform',`translate(${m.left},${m.top})`);
+  const x = d3.scaleLinear().domain([0,100]).range([0,iw]);
+  const yb = d3.scaleBand().domain(D3.map(d=>d[0])).range([0,ih]).padding(0.26);
+
+  const COL = {mandiri:'var(--blue-deep)', snbt:'var(--blue-mid)', snbp:'var(--blue-light)'};
+  const dimNat = step>=1;
+
+  // legend
+  const leg = svg.append('g').attr('transform',`translate(${m.left},26)`);
+  const items = [['Mandiri',COL.mandiri],['SNBT',COL.snbt],['SNBP',COL.snbp]];
+  let lx = 0;
+  items.forEach(it=>{
+    const grp = leg.append('g').attr('transform',`translate(${lx},0)`);
+    grp.append('rect').attr('width',12).attr('height',12).attr('y',-10).attr('fill',it[1]);
+    grp.append('text').attr('x',17).attr('y',0).attr('font-size',12).attr('fill','var(--ink)').text(it[0]);
+    lx += 22 + it[0].length*7.6 + 18;
+  });
+
+  // x gridlines
+  [0,25,50,75,100].forEach(t=>{
+    g.append('line').attr('x1',x(t)).attr('x2',x(t)).attr('y1',0).attr('y2',ih)
+      .attr('stroke','var(--rule)').attr('stroke-width',1);
+    g.append('text').attr('x',x(t)).attr('y',ih+22).attr('text-anchor','middle')
+      .attr('fill','var(--muted)').attr('font-size',11).text(t+'%');
+  });
+
+  D3.forEach((d,i)=>{
+    const [ab,,mand,snbt,snbp] = d;
+    const yy = yb(ab), bh = yb.bandwidth();
+    const segs = [
+      {k:'mandiri', v:mand, x0:0},
+      {k:'snbt', v:snbt, x0:mand},
+      {k:'snbp', v:snbp, x0:mand+snbt}
+    ];
+    const isUNY = ab==='UNY*';
+
+    // label
+    g.append('text').attr('x',-8).attr('y',yy+bh/2+4).attr('text-anchor','end')
+      .attr('font-size',11)
+      .attr('font-weight', (step>=2 && isUNY) ? 700 : 400)
+      .attr('fill', (step>=2 && isUNY) ? 'var(--gold-deep)' : 'var(--ink)')
+      .text(ab);
+
+    segs.forEach(s=>{
+      const op = (dimNat && s.k!=='mandiri') ? 0.3 : 1;
+      const rect = g.append('rect')
+        .attr('x',x(s.x0)).attr('y',yy).attr('height',bh)
+        .attr('fill',COL[s.k]).attr('opacity',op);
+      if(animate && !REDUCE){
+        rect.attr('width',0).transition()
+          .delay(Math.min(i*18,420)).duration(650).ease(d3.easeCubicOut)
+          .attr('width',x(s.v));
+      } else {
+        rect.attr('width',x(s.v));
+      }
+    });
+
+    // mandiri % label (from step 1)
+    if(step>=1){
+      const inside = x(mand) > 34;
+      g.append('text')
+        .attr('x', inside ? x(mand)-5 : x(mand)+5)
+        .attr('y', yy+bh/2+4)
+        .attr('text-anchor', inside ? 'end' : 'start')
+        .attr('font-size',10.5).attr('font-weight',700)
+        .attr('fill', inside ? '#fff' : 'var(--blue-deep)')
+        .text(mand.toFixed(1).replace('.',',')+'%');
+    }
+
+    // UNY highlight at final step
+    if(step>=2 && isUNY){
+      g.append('rect').attr('x',0).attr('y',yy-1.5).attr('height',bh+3)
+        .attr('width',x(mand)).attr('fill','none')
+        .attr('stroke','var(--gold)').attr('stroke-width',2.5);
+    }
+  });
+
+  // average reference line (from step 1)
+  if(step>=1){
+    g.append('line').attr('x1',x(AVG_MANDIRI)).attr('x2',x(AVG_MANDIRI))
+      .attr('y1',-6).attr('y2',ih)
+      .attr('stroke','var(--gold-deep)').attr('stroke-width',1.5).attr('stroke-dasharray','4 3');
+    g.append('text').attr('x',x(AVG_MANDIRI)).attr('y',-10).attr('text-anchor','middle')
+      .attr('font-size',11).attr('font-weight',700).attr('fill','var(--gold-deep)')
+      .text('rata-rata Mandiri ±40%');
+  }
+}
+
+/* ===================== ORCHESTRATION ===================== */
+const RENDER = {1:renderAct1, 2:renderAct2, 3:renderAct3};
+const actStep = {1:0, 2:0, 3:0};
+function renderAct(act, step, animate){ RENDER[act](step, animate); }
+
+function renderAll(animate){
+  renderAct(1, actStep[1], animate);
+  renderAct(2, actStep[2], animate);
+  renderAct(3, actStep[3], animate);
+}
+
+// initial draw
+renderAll(false);
+
+// scrollama
+const scroller = scrollama();
+scroller.setup({ step:'.step', offset:0.7 }).onStepEnter(res=>{
+  const el = res.element;
+  const act = +el.dataset.act, step = +el.dataset.step;
+  document.querySelectorAll(`.step[data-act="${act}"]`).forEach(s=>s.classList.remove('is-active'));
+  el.classList.add('is-active');
+  actStep[act] = step;
+  renderAct(act, step, true);
+});
+
+// progress bar
+const progress = document.getElementById('progress');
+function onScroll(){
+  const sc = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (sc>0 ? (window.scrollY/sc)*100 : 0) + '%';
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+// resize (debounced)
+let rt;
+window.addEventListener('resize', ()=>{
+  clearTimeout(rt);
+  rt = setTimeout(()=>{ renderAll(false); scroller.resize(); }, 180);
+});
+
+/* ===================== ACCESSIBLE TABLES ===================== */
+const tb1 = document.getElementById('tbl1');
+D1.forEach(d=> tb1.insertAdjacentHTML('beforeend',`<tr><td>${d[0]}</td><td>${fmtID(d[1])}</td></tr>`));
+const tb2 = document.getElementById('tbl2');
+D2.forEach((d,i)=> tb2.insertAdjacentHTML('beforeend',
+  `<tr><td>${d.y}</td><td>${fmtID(S_PTNBH[i].v)}</td><td>${fmtID(d.lain)}</td><td>${fmtID(d.pts)}</td></tr>`));
+const tb3 = document.getElementById('tbl3');
+D3.forEach(d=> tb3.insertAdjacentHTML('beforeend',
+  `<tr><td>${d[1]}</td><td>${d[2].toFixed(1).replace('.',',')}</td><td>${d[3].toFixed(1).replace('.',',')}</td><td>${d[4].toFixed(1).replace('.',',')}</td></tr>`));
+</script>
+</body>
+</html>
