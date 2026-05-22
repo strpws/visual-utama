@@ -37,10 +37,6 @@ img{max-width:100%}
 
 /* ---- hero ---- */
 .hero{padding:16vh 0 12vh;}
-.kicker{
-  font-family:var(--sans); font-weight:700; text-transform:uppercase;
-  letter-spacing:0; color:var(--red); font-size:.82rem; margin:0 0 1.1rem;
-}
 .hero h1{
   font-family:var(--serif); font-weight:700; line-height:1.14;
   letter-spacing:-.01em; margin:0 0 1.4rem;
@@ -88,7 +84,7 @@ img{max-width:100%}
 .act__chart{flex:1 1 auto; min-height:0;}
 .act__chart svg{display:block}
 
-.act__steps{position:relative; margin-top:-100vh; margin-top:-100svh;}
+.act__steps{position:relative; margin-top:-100vh; margin-top:-100svh; pointer-events:none;}
 .step{
   min-height:100vh; min-height:100svh;
   display:flex; align-items:flex-end; justify-content:center;
@@ -172,7 +168,6 @@ details.data thead th{color:var(--muted); font-weight:700;}
 
 <!-- ============ HERO ============ -->
 <header class="hero wrap">
-  <p class="kicker">Pendidikan Tinggi</p>
   <h1>Ledakan Daya Tampung PTN-BH</h1>
   <p class="standfirst">Dalam satu dekade, jumlah mahasiswa baru di Indonesia melonjak. Namun pertumbuhan itu tak dibagi rata — segelintir perguruan tinggi negeri berbadan hukum menyedot porsi terbesar, makin banyak lewat jalur Mandiri di luar seleksi nasional.</p>
   <div class="scroll-cue"><span class="arrow"></span> Gulir untuk menelusuri</div>
@@ -182,7 +177,7 @@ details.data thead th{color:var(--muted); font-weight:700;}
 <section class="act" id="act1" aria-label="Bagian 1: Permintaan kursi kuliah meroket">
   <div class="act__graphic">
     <div class="act__head"><p class="act__kicker">Bagian 1 — Permintaan</p></div>
-    <div class="act__chart" id="g1" role="img" aria-label="Grafik garis jumlah mahasiswa sarjana baru per tahun, 2014 sampai 2025, naik dari 876 ribu menjadi 1,45 juta."></div>
+    <div class="act__chart" id="g1" role="img" aria-label="Grafik batang jumlah mahasiswa sarjana baru per tahun, 2014 sampai 2025, naik dari 876 ribu menjadi 1,45 juta."></div>
   </div>
   <div class="act__steps">
     <div class="step" data-act="1" data-step="0">
@@ -249,14 +244,26 @@ details.data thead th{color:var(--muted); font-weight:700;}
     </div>
     <div class="step" data-act="3" data-step="1">
       <div class="step__card">
-        <h3>Jalur Mandiri membesar</h3>
-        <p>Rata-rata sekitar <span class="big">40%</span> kursi PTN-BH diisi lewat jalur Mandiri — di luar dua jalur nasional. <em>12 dari 21</em> PTN-BH mengisi 40% kursinya atau lebih dari jalur ini.</p>
+        <h3>Sorot jalur Mandiri</h3>
+        <p>Kita soroti porsi <span class="big">jalur Mandiri</span> (segmen biru tua) di tiap PTN-BH — kursi yang diisi lewat seleksi yang diatur kampus sendiri, di luar SNBP dan SNBT.</p>
       </div>
     </div>
     <div class="step" data-act="3" data-step="2">
       <div class="step__card">
+        <h3>Rata-rata ±40%</h3>
+        <p>Rata-rata sekitar <span class="big">40%</span> kursi PTN-BH diisi lewat jalur Mandiri. <em>12 dari 21</em> PTN-BH mengisi 40% kursinya atau lebih lewat jalur ini.</p>
+      </div>
+    </div>
+    <div class="step" data-act="3" data-step="3">
+      <div class="step__card">
         <h3>Yang paling jauh</h3>
         <p>Di <span class="big">UNY</span>, hampir <span class="big">67%</span> mahasiswa baru masuk lewat jalur Mandiri — dua dari tiga kursi ditentukan di luar seleksi nasional.</p>
+      </div>
+    </div>
+    <div class="step" data-act="3" data-step="4">
+      <div class="step__card">
+        <h3>Di atas mandat 50%</h3>
+        <p>Pemerintah membatasi jalur Mandiri maksimal <span class="big">50%</span> dari total kursi. Namun <span class="big">UNY</span> (66,9%) dan <span class="big">UNJ</span> (54,9%) menembus batas itu — kursi yang tak terisi dari SNBP dan SNBT <em>dialihkan (rollover)</em> ke jalur Mandiri.</p>
       </div>
     </div>
   </div>
@@ -270,7 +277,7 @@ details.data thead th{color:var(--muted); font-weight:700;}
   <p>Pertumbuhan mahasiswa baru terkonsentrasi di PTN-BH, sementara PTN lain tumbuh lambat dan rata-rata PTS menyusut. Pada saat yang sama, makin banyak kursi PTN-BH dialokasikan lewat jalur Mandiri yang ditentukan kampus — bukan lewat seleksi nasional SNBP dan SNBT.</p>
 
   <p class="note">
-    Sumber: data penerimaan mahasiswa sarjana baru perguruan tinggi, 2014–2025; komposisi jalur masuk PTN-BH (Mandiri, SNBT, SNBP). PTN-BH mencakup 21 perguruan tinggi negeri berbadan hukum. Angka pada Bagian 2 adalah rata-rata penerimaan per kampus. <br>*Sesuai catatan pada data sumber. Grafik: Kompas.
+    Sumber: data penerimaan mahasiswa sarjana baru perguruan tinggi, 2014–2025; komposisi jalur masuk PTN-BH (Mandiri, SNBT, SNBP). PTN-BH mencakup 21 perguruan tinggi negeri berbadan hukum. Angka pada Bagian 2 adalah rata-rata penerimaan per kampus. Pemerintah memandatkan daya tampung jalur Mandiri maksimal 50% dari total kursi; namun pada realisasinya, kursi kosong dari jalur SNBP dan SNBT dapat dialihkan (rollover) ke jalur Mandiri, sehingga porsinya dapat melampaui batas tersebut. <br>*Sesuai catatan pada data sumber. Grafik: Kompas.
   </p>
 
   <details class="data">
@@ -357,7 +364,9 @@ const S_PTS   = D2.map(d=>({y:d.y, v:d.pts}));
 // urutan nilai pada D2[].v
 const PTNBH_NAMES = ['IPB','ITB','ITS','UNAIR','UNAND','UB','UNDIP','UGM','UNHAS','UI','UNJ','UM','UNP','UNNES','UNESA','UNY','UNPAD','UPI','UNS','UNSRI','USK'];
 const INDIV = PTNBH_NAMES.map((nm,k)=>({name:nm, data:D2.map(d=>({y:d.y, v:d.v[k]}))}));
-const STANDOUTS = {UNESA:1, UB:1, UNDIP:1};
+const NAMED = {UNESA:1, UB:1, UNDIP:1, UGM:1, UI:1, IPB:1, ITS:1, ITB:1, UPI:1, UM:1, UNPAD:1};
+// persistent end labels (vertically dodged so they don't overlap); UGM stays hover-only
+const LABELED = {UNESA:1, UB:1, UNDIP:1, ITS:1, ITB:1, UPI:1, UI:1, UM:1, UNPAD:1, IPB:1};
 const AVG_MANDIRI = mean(D3.map(d=>d[2])); // ~39.85
 
 /* ===================== HELPERS ===================== */
@@ -384,15 +393,16 @@ function countUp(node, to, animate){
 }
 const y1label = v => v===0 ? '0' : v>=1e6 ? (v/1e6).toFixed(1).replace('.',',')+' jt' : (v/1000)+' rb';
 
-/* ===================== ACT 1 — line: total ===================== */
+/* ===================== ACT 1 — vertical bars: total ===================== */
 function renderAct1(step, animate){
   const {svg,w,h} = freshSvg('g1');
   if(w===0||h===0) return;
-  const m = {top:24, right:74, bottom:44, left:16};
+  const m = {top:24, right:16, bottom:44, left:16};
   const iw = w-m.left-m.right, ih = h-m.top-m.bottom;
   const g = svg.append('g').attr('transform',`translate(${m.left},${m.top})`);
-  const x = d3.scaleLinear().domain([2014,2025]).range([0,iw]);
+  const x = d3.scaleBand().domain(D1.map(d=>d[0])).range([0,iw]).padding(0.22);
   const y = d3.scaleLinear().domain([0,1600000]).range([ih,0]);
+  const cx = d => x(d[0]) + x.bandwidth()/2;
 
   // gridlines + y labels
   [0,500000,1000000,1500000].forEach(t=>{
@@ -402,43 +412,47 @@ function renderAct1(step, animate){
       .attr('font-size',12).text(y1label(t));
   });
   // x labels
-  [2014,2017,2020,2023,2025].forEach(t=>{
-    g.append('text').attr('x',x(t)).attr('y',ih+24).attr('text-anchor','middle')
-      .attr('fill','var(--muted)').attr('font-size',12).text(t);
+  D1.forEach(d=>{
+    g.append('text').attr('x',cx(d)).attr('y',ih+24).attr('text-anchor','middle')
+      .attr('fill','var(--muted)').attr('font-size',11).text(d[0]);
   });
 
-  const line = d3.line().x(d=>x(d[0])).y(d=>y(d[1])).curve(d3.curveMonotoneX);
   const first = D1[0], last = D1[D1.length-1];
+  const focusYear = step>=1 ? last[0] : first[0];
 
-  // start marker (always)
-  g.append('circle').attr('cx',x(first[0])).attr('cy',y(first[1])).attr('r',4.5)
-    .attr('fill','var(--blue)');
-
-  if(step>=1){
-    const path = g.append('path').datum(D1).attr('d',line)
-      .attr('fill','none').attr('stroke','var(--blue)')
-      .attr('stroke-width',3).attr('stroke-linecap','round').attr('stroke-linejoin','round');
-    if(animate && !REDUCE){
-      const L = path.node().getTotalLength();
-      path.attr('stroke-dasharray',`${L} ${L}`).attr('stroke-dashoffset',L)
-        .transition().duration(1400).ease(d3.easeCubicInOut).attr('stroke-dashoffset',0);
+  // bars
+  D1.forEach(d=>{
+    const isFocus = d[0]===focusYear;
+    const fill = step>=1
+      ? (isFocus ? 'var(--blue-deep)' : 'var(--blue)')
+      : (isFocus ? 'var(--blue)' : 'var(--blue-light)');
+    const bar = g.append('rect')
+      .attr('x',x(d[0])).attr('width',x.bandwidth()).attr('fill',fill);
+    // only the "titik awal" reveal (step 0) grows the bars; later steps draw
+    // them in place so scrolling on just recolors + updates the annotation.
+    if(animate && !REDUCE && step===0){
+      bar.attr('y',ih).attr('height',0).transition()
+        .delay(Math.min((d[0]-first[0])*40,400)).duration(800).ease(d3.easeCubicOut)
+        .attr('y',y(d[1])).attr('height',ih-y(d[1]));
+    } else {
+      bar.attr('y',y(d[1])).attr('height',ih-y(d[1]));
     }
-    // end dot + label
-    g.append('circle').attr('cx',x(last[0])).attr('cy',y(last[1])).attr('r',5)
-      .attr('fill','var(--blue)');
-    const lab = g.append('text').attr('x',x(last[0])+8).attr('y',y(last[1])-8)
-      .attr('fill','var(--blue-deep)').attr('font-weight',700).attr('font-size',15)
-      .attr('text-anchor','end');
+  });
+
+  // focus value label + annotation
+  const fd = step>=1 ? last : first;
+  const lab = g.append('text').attr('x',cx(fd)).attr('y',y(fd[1])-12)
+    .attr('text-anchor','middle')
+    .attr('fill','var(--blue-deep)').attr('font-weight',700).attr('font-size',15);
+  if(step>=1){
     countUp(lab, last[1], animate);
-    // +65% annotation
-    g.append('text').attr('x',x(last[0])+8).attr('y',y(last[1])+10)
-      .attr('text-anchor','end').attr('fill','var(--red)')
+    g.append('text').attr('x',cx(last)).attr('y',y(last[1])-30)
+      .attr('text-anchor','middle').attr('fill','var(--red)')
       .attr('font-weight',700).attr('font-size',13).text('+65%');
   } else {
-    const lab = g.append('text').attr('x',x(first[0])+8).attr('y',y(first[1])-8)
-      .attr('fill','var(--blue-deep)').attr('font-weight',700).attr('font-size',15);
     lab.text(fmtID(first[1]));
-    g.append('text').attr('x',x(first[0])+8).attr('y',y(first[1])+10)
+    g.append('text').attr('x',cx(first)).attr('y',y(first[1])-30)
+      .attr('text-anchor','middle')
       .attr('fill','var(--muted)').attr('font-size',12).text('mahasiswa baru, 2014');
   }
 }
@@ -449,11 +463,11 @@ function renderAct2(step, animate){
   if(w===0||h===0) return;
   const m = {top:28, right:100, bottom:44, left:16};
   const iw = w-m.left-m.right, ih = h-m.top-m.bottom;
-  // step 1 (the "break apart") zooms out to show the full fan; other steps
-  // keep the closer scale so PTN lain / PTS stay readable.
-  const tall = (step===1);
-  const domainMax = tall ? 21500 : 11000;
-  const ticks = tall ? [0,5000,10000,15000,20000] : [0,2500,5000,7500,10000];
+  // one zoomed-out scale across every step so the axis never jumps: the PTN-BH
+  // line holds position while the fan reveals, then the small PTN lain / PTS
+  // lines drop in on the same scale — dramatizing the gap instead of rescaling.
+  const domainMax = 21500;
+  const ticks = [0,5000,10000,15000,20000];
 
   const clipId = 'clip-g2';
   svg.append('defs').append('clipPath').attr('id',clipId)
@@ -477,27 +491,59 @@ function renderAct2(step, animate){
   const line = d3.line().x(d=>x(d.y)).y(d=>y(d.v)).curve(d3.curveMonotoneX);
   const plot = g.append('g').attr('clip-path',`url(#${clipId})`);
 
-  // individual PTN-BH lines (revealed from step 1) — behind the aggregates, clipped
+  // individual PTN-BH lines (revealed from step 1) — behind the aggregates, clipped.
+  // A named subset is emphasized; every line is hoverable to reveal its 2025 value.
   if(step>=1){
+    const endLabels = [];
     INDIV.forEach((s,i)=>{
-      const std = STANDOUTS[s.name];
+      const named = NAMED[s.name];
+      const baseStroke = named ? 'var(--blue-mid)' : 'var(--blue-light)';
+      const baseW = named ? 1.8 : 1.1;
+      const baseOp = named ? 0.75 : 0.3;
+      const last = s.data[s.data.length-1];
+
       const path = plot.append('path').datum(s.data).attr('d',line)
-        .attr('fill','none').attr('stroke','var(--blue-light)')
-        .attr('stroke-width', std?1.6:1.1)
-        .attr('opacity', std?0.7:0.3)
+        .attr('fill','none').attr('stroke',baseStroke)
+        .attr('stroke-width', baseW).attr('opacity', baseOp)
         .attr('stroke-linecap','round').attr('stroke-linejoin','round');
       if(animate && !REDUCE && step===1){
-        const fin = std?0.7:0.3;
         path.style('opacity',0).transition().delay(Math.min(i*15,330)).duration(650)
-          .style('opacity',fin);
+          .style('opacity',baseOp);
       }
-      // label standouts only while zoomed out (otherwise they sit above the frame)
-      if(std && tall){
-        const last = s.data[s.data.length-1];
-        g.append('text').attr('x',x(last.y)+7).attr('y',y(last.v)+4)
-          .attr('fill','var(--blue)').attr('font-size',11).attr('font-weight',700)
-          .text(s.name);
-      }
+
+      // collect persistent end labels; placed after dodging (below)
+      if(LABELED[s.name]) endLabels.push({name:s.name, vy:y(last.v)});
+
+      // invisible fat hit-area: hover emphasizes the line and shows name + 2025 value
+      plot.append('path').datum(s.data).attr('d',line)
+        .attr('fill','none').attr('stroke','transparent').attr('stroke-width',12)
+        .style('cursor','pointer').style('pointer-events','stroke')
+        .on('mouseenter', ()=>{
+          path.raise().attr('stroke','var(--blue-deep)').attr('stroke-width',2.6).style('opacity',1);
+          const hl = g.append('g').attr('class','hoverlab').style('pointer-events','none');
+          hl.append('circle').attr('cx',x(last.y)).attr('cy',y(last.v)).attr('r',3.5)
+            .attr('fill','var(--blue-deep)');
+          hl.append('text').attr('x',x(last.y)+7).attr('y',y(last.v)+4).attr('text-anchor','start')
+            .attr('stroke','#fff').attr('stroke-width',3).attr('paint-order','stroke')
+            .attr('fill','var(--blue-deep)').attr('font-size',11.5).attr('font-weight',700)
+            .text(`${s.name} ${fmtID(last.v)}`);
+        })
+        .on('mouseleave', ()=>{
+          path.attr('stroke',baseStroke).attr('stroke-width',baseW).style('opacity',baseOp);
+          g.selectAll('g.hoverlab').remove();
+        });
+    });
+
+    // dodge the persistent end labels vertically so they don't overlap each other
+    endLabels.sort((a,b)=>a.vy-b.vy);
+    const GAP = 13;
+    for(let k=1;k<endLabels.length;k++){
+      if(endLabels[k].vy - endLabels[k-1].vy < GAP) endLabels[k].vy = endLabels[k-1].vy + GAP;
+    }
+    endLabels.forEach(L=>{
+      g.append('text').attr('x',x(2025)+7).attr('y',L.vy+4)
+        .attr('fill','var(--blue)').attr('font-size',11).attr('font-weight',700)
+        .text(L.name);
     });
   }
 
@@ -517,6 +563,14 @@ function renderAct2(step, animate){
       path.attr('stroke-dasharray',`${L} ${L}`).attr('stroke-dashoffset',L)
         .transition().duration(1100).ease(d3.easeCubicInOut).attr('stroke-dashoffset',0);
     }
+    // start dot + value at 2014 (white halo so it reads over gridline labels)
+    const firstP = s.data[0];
+    g.append('circle').attr('cx',x(firstP.y)).attr('cy',y(firstP.v)).attr('r',4).attr('fill',s.color);
+    g.append('text').attr('x',x(firstP.y)+7).attr('y',y(firstP.v)-9)
+      .attr('text-anchor','start')
+      .attr('stroke','#fff').attr('stroke-width',3).attr('paint-order','stroke')
+      .attr('fill',s.color).attr('font-weight',700).attr('font-size',13).text(fmtID(firstP.v));
+
     const last = s.data[s.data.length-1];
     g.append('circle').attr('cx',x(last.y)).attr('cy',y(last.v)).attr('r',4).attr('fill',s.color);
     g.append('text').attr('x',x(last.y)+8).attr('y',y(last.v)-8)
@@ -537,7 +591,7 @@ function renderAct2(step, animate){
 function renderAct3(step, animate){
   const {svg,w,h} = freshSvg('g3');
   if(w===0||h===0) return;
-  const m = {top:58, right:16, bottom:30, left:54};
+  const m = {top:70, right:16, bottom:30, left:54};
   const iw = w-m.left-m.right, ih = h-m.top-m.bottom;
   const g = svg.append('g').attr('transform',`translate(${m.left},${m.top})`);
   const x = d3.scaleLinear().domain([0,100]).range([0,iw]);
@@ -574,12 +628,14 @@ function renderAct3(step, animate){
       {k:'snbp', v:snbp, x0:mand+snbt}
     ];
     const isUNY = ab==='UNY*';
+    const exceeds = isUNY || ab==='UNJ*';   // schools above the 50% mandate
 
     // label
     g.append('text').attr('x',-8).attr('y',yy+bh/2+4).attr('text-anchor','end')
       .attr('font-size',11)
-      .attr('font-weight', (step>=2 && isUNY) ? 700 : 400)
-      .attr('fill', (step>=2 && isUNY) ? 'var(--gold-deep)' : 'var(--ink)')
+      .attr('font-weight', ((step===3 && isUNY) || (step>=4 && exceeds)) ? 700 : 400)
+      .attr('fill', (step>=4 && exceeds) ? 'var(--red)'
+                  : (step===3 && isUNY) ? 'var(--gold-deep)' : 'var(--ink)')
       .text(ab);
 
     segs.forEach(s=>{
@@ -587,7 +643,9 @@ function renderAct3(step, animate){
       const rect = g.append('rect')
         .attr('x',x(s.x0)).attr('y',yy).attr('height',bh)
         .attr('fill',COL[s.k]).attr('opacity',op);
-      if(animate && !REDUCE){
+      // only the first reveal (step 0) grows the bars; later steps draw them in
+      // place so scrolling on just layers the new annotations incrementally.
+      if(animate && !REDUCE && step===0){
         rect.attr('width',0).transition()
           .delay(Math.min(i*18,420)).duration(650).ease(d3.easeCubicOut)
           .attr('width',x(s.v));
@@ -608,22 +666,38 @@ function renderAct3(step, animate){
         .text(mand.toFixed(1).replace('.',',')+'%');
     }
 
-    // UNY highlight at final step
-    if(step>=2 && isUNY){
+    // UNY focus (step 3): gold outline on its full Mandiri segment
+    if(step===3 && isUNY){
       g.append('rect').attr('x',0).attr('y',yy-1.5).attr('height',bh+3)
         .attr('width',x(mand)).attr('fill','none')
         .attr('stroke','var(--gold)').attr('stroke-width',2.5);
     }
+    // rollover (step 4): outline the share exceeding the 50% mandate (UNY & UNJ)
+    if(step>=4 && exceeds){
+      g.append('rect').attr('x',x(50)).attr('y',yy-1.5).attr('height',bh+3)
+        .attr('width',x(mand)-x(50)).attr('fill','none')
+        .attr('stroke','var(--red)').attr('stroke-width',2.5);
+    }
   });
 
-  // average reference line (from step 1)
-  if(step>=1){
+  // average reference line (step 2+)
+  if(step>=2){
     g.append('line').attr('x1',x(AVG_MANDIRI)).attr('x2',x(AVG_MANDIRI))
       .attr('y1',-6).attr('y2',ih)
       .attr('stroke','var(--gold-deep)').attr('stroke-width',1.5).attr('stroke-dasharray','4 3');
     g.append('text').attr('x',x(AVG_MANDIRI)).attr('y',-10).attr('text-anchor','middle')
       .attr('font-size',11).attr('font-weight',700).attr('fill','var(--gold-deep)')
       .text('rata-rata Mandiri ±40%');
+  }
+
+  // government mandate: Mandiri capacity capped at 50% of total seats (step 4+)
+  if(step>=4){
+    g.append('line').attr('x1',x(50)).attr('x2',x(50))
+      .attr('y1',-6).attr('y2',ih)
+      .attr('stroke','var(--red)').attr('stroke-width',1.5).attr('stroke-dasharray','5 3');
+    g.append('text').attr('x',x(50)).attr('y',-26).attr('text-anchor','middle')
+      .attr('font-size',11).attr('font-weight',700).attr('fill','var(--red)')
+      .text('mandat maks. 50%');
   }
 }
 
