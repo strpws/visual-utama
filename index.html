@@ -36,10 +36,10 @@ img{max-width:100%}
 .wrap{max-width:680px; margin:0 auto; padding:0 24px;}
 
 /* ---- hero ---- */
-.hero{padding:16vh 0 12vh;}
+.hero{padding:2vh 0 3vh;}
 .hero h1{
   font-family:var(--serif); font-weight:700; line-height:1.14;
-  letter-spacing:-.01em; margin:0 0 1.4rem;
+  letter-spacing:-.01em; margin:0 0 2.4rem;
   font-size:1rem;
 }
 .standfirst{
@@ -53,7 +53,7 @@ img{max-width:100%}
 .byline strong{color:var(--ink)}
 .scroll-cue{
   font-family:var(--sans); font-size:.78rem; letter-spacing:.04em;
-  text-transform:uppercase; color:var(--muted); margin-top:3.5rem;
+  text-transform:uppercase; color:var(--muted); margin-top:0; margin-bottom:1.6rem;
   display:flex; align-items:center; gap:.55rem;
 }
 .scroll-cue .arrow{
@@ -85,6 +85,12 @@ img{max-width:100%}
 .act__chart svg{display:block}
 
 .act__steps{position:relative; margin-top:-100vh; margin-top:-100svh; pointer-events:none;}
+
+/* Act 1 shares the first screen with the hero: shrink its stage so the whole
+   chart fits in the initial viewport, and keep the steps overlay aligned. */
+#act1 .act__graphic{height:calc(100vh - 21rem); height:calc(100svh - 21rem);}
+#act1 .act__steps{margin-top:calc(-100vh + 21rem); margin-top:calc(-100svh + 21rem);}
+#act1 .step{align-items:center;}
 .step{
   min-height:100vh; min-height:100svh;
   display:flex; align-items:flex-end; justify-content:center;
@@ -168,9 +174,9 @@ details.data thead th{color:var(--muted); font-weight:700;}
 
 <!-- ============ HERO ============ -->
 <header class="hero wrap">
+  <div class="scroll-cue"><span class="arrow"></span> Infografis Interaktif: Gulir/scroll untuk menelusuri</div>
   <h1>Ledakan Daya Tampung PTN-BH</h1>
   <p class="standfirst">Dalam satu dekade, jumlah mahasiswa baru di Indonesia melonjak. Namun pertumbuhan itu tak dibagi rata — segelintir perguruan tinggi negeri berbadan hukum menyedot porsi terbesar, makin banyak lewat jalur Mandiri di luar seleksi nasional.</p>
-  <div class="scroll-cue"><span class="arrow"></span> Gulir/scroll untuk menelusuri</div>
 </header>
 
 <!-- ============ ACT 1 — DEMAND ============ -->
